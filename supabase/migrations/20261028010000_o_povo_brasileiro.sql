@@ -1,0 +1,8 @@
+-- Add Darcy Ribeiro's O povo brasileiro to the live club catalog.
+insert into public.club_books (id, details, sort_order)
+values (
+  'povo-brasileiro',
+  '{"id":"povo-brasileiro","title":"O povo brasileiro","author":"Darcy Ribeiro","isbn":"9788571644519","cover":"https://cdn.awsli.com.br/2500x2500/765/765972/produto/36550280/097c19f0e5.jpg","tag":"Formação do Brasil","tags":["Antropologia","Formação étnica","Povos indígenas","Diáspora africana","Identidade nacional"],"description":"Em sua síntese de antropologia da civilização, Darcy Ribeiro investiga como diferentes matrizes indígenas, africanas e europeias se encontraram sob a colonização e deram origem a um povo novo, diverso e marcado por profundas desigualdades. O livro acompanha processos de gestação étnica, escravidão, conflitos, mestiçagem, regionalização e formação de uma identidade compartilhada. Ao percorrer os ‘brasis’ crioulo, caboclo, sertanejo, caipira e sulino, Ribeiro pergunta como tantas diferenças produziram uma unidade nacional e por que esse processo também reproduziu violência e exclusão. É uma interpretação abrangente e provocadora da formação histórica e cultural do país.","pages":"476","price":"Usados a partir de R$ 30,00*","href":"https://books.google.com.br/books/about/O_Povo_brasileiro.html?hl=pt-BR&id=RRxCsHljsJcC","buyHref":"https://www.estantevirtual.com.br/livro/o-povo-brasileiro-FW1-8123-000-BK?condition=novo&page=1","publisher":"Companhia das Letras","stamp":"12","verify":"Edição de 1995, ISBN 9788571644519. Há reimpressões catalogadas com 470, 472 ou 476 páginas; confirme a edição e a paginação na loja.","color":"green"}'::jsonb,
+  12
+)
+on conflict (id) do nothing;
