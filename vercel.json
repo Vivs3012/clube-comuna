@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/clube", "destination": "/index.html" },
+    { "source": "/clube/integrantes", "destination": "/index.html" }
+  ]
+}
