@@ -1,0 +1,10 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+import './styles.css';
+import './colombia.css';
+import 'leaflet/dist/leaflet.css';
+import ClubeComuna from './ClubeComuna.jsx';
+const isClube = window.location.pathname.replace(/\/$/, '').startsWith('/clube');
+document.title = isClube ? 'Clube Comuna — Ler o mundo em comum' : 'Mapa de Oportunidade · TaDa';
+createRoot(document.getElementById('root')).render(isClube ? <ClubeComuna /> : <App />);
