@@ -22,6 +22,7 @@
 @media(max-width:580px){.cc-alexandria-page{padding-top:36px;padding-bottom:65px}.cc-alexandria-page h1{font-size:47px;letter-spacing:-1.4px}.cc-alexandria-lede{font-size:12px}.cc-alexandria-context{padding:16px;margin-bottom:22px}.cc-alexandria-context p{font-size:13px}.cc-alexandria-controls{grid-template-columns:1fr;gap:12px}.cc-alexandria-clear{grid-column:auto}.cc-alexandria-group-head h2{font-size:22px}.cc-alexandria-book{grid-template-columns:92px minmax(0,1fr);gap:10px;padding:9px}.cc-alexandria-cover{max-height:150px}.cc-alexandria-info h3{font-size:17px}.cc-alexandria-description{-webkit-line-clamp:4;font-size:9px}.cc-alexandria-actions button{font-size:7px;padding:0 6px}}
 
 .cc-alexandria-suggest-link{display:inline-flex;align-items:center;gap:7px;margin:-8px 0 24px;color:var(--red);font-size:11px;font-weight:700;text-decoration:underline!important;text-underline-offset:3px}.cc-alexandria-suggest{scroll-margin-top:105px}.cc-alexandria-page .cc-price-note{font-size:9px;line-height:1.55;color:var(--muted);margin:13px 0 0}
+.cc-book-draft select{width:100%;height:36px;border:1px solid #cfc6b9;background:#fffdf8;color:var(--ink);padding:0 9px;font:11px 'DM Sans';outline-color:var(--red)}
 
 /* Dropdown Mídia */
 .cc-nav-dropdown{position:relative;align-self:center}
