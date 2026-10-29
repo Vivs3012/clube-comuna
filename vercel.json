@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/clube", "destination": "/index.html" },
-    { "source": "/clube/integrantes", "destination": "/index.html" }
+    { "source": "/clube/integrantes", "destination": "/index.html" },
+    { "source": "/clube/alexandria", "destination": "/index.html" }
   ]
 }
