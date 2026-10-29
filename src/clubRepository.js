@@ -7,12 +7,13 @@ function unwrap(result, label) {
 
 export async function loadClubState(defaultBooks, isAdmin = false) {
   const client = supabase;
-  const [bookResult, profileResult, voteResult, availabilityResult, configResult] = await Promise.all([
+  const [bookResult, profileResult, voteResult, availabilityResult, configResult, mediaResult] = await Promise.all([
     client.from('club_books').select('id,details,sort_order').order('sort_order').order('created_at'),
     client.from('club_profiles').select('id,display_name,bio,avatar_url,created_at').eq('is_active', true).order('created_at'),
     client.from('club_votes').select('user_id,kind,value'),
     client.from('club_date_availability').select('user_id,option_value'),
     client.from('club_config').select('status,deadlines,results,date_options,history,finalized_book_id').eq('id', 1).maybeSingle(),
+    client.from('club_media_recommendations').select('*').order('created_at', { ascending: false }),
   ]);
 
   let bookRows = unwrap(bookResult, 'Não foi possível carregar o catálogo');
@@ -26,6 +27,7 @@ export async function loadClubState(defaultBooks, isAdmin = false) {
   const profileRows = unwrap(profileResult, 'Não foi possível carregar integrantes');
   const voteRows = unwrap(voteResult, 'Não foi possível carregar os votos');
   const availabilityRows = unwrap(availabilityResult, 'Não foi possível carregar disponibilidades');
+  const mediaRecommendations = unwrap(mediaResult, 'Não foi possível carregar indicações de mídia');
 
   const votes = {};
   for (const row of voteRows) votes[row.user_id] = { ...(votes[row.user_id] || {}), [row.kind]: row.value };
@@ -67,6 +69,7 @@ export async function loadClubState(defaultBooks, isAdmin = false) {
     members,
     adminMembers,
     finalizedBookId: config?.finalized_book_id || null,
+    mediaRecommendations,
   };
 }
 

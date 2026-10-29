@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 640" fill="none">
+  <defs>
+    <linearGradient id="night" x1="700" y1="0" x2="700" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#150f2b"/><stop offset=".58" stop-color="#36204b"/><stop offset="1" stop-color="#130e27"/>
+    </linearGradient>
+    <linearGradient id="velvet" x1="0" y1="0" x2="360" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9d3154"/><stop offset=".48" stop-color="#571c46"/><stop offset="1" stop-color="#210f35"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="700" y1="0" x2="700" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f5d898"/><stop offset="1" stop-color="#9d713b"/>
+    </linearGradient>
+    <radialGradient id="stageLight" cx="0" cy="0" r="1" gradientTransform="matrix(0 330 -510 0 700 310)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f9d98d" stop-opacity=".53"/><stop offset=".46" stop-color="#cc8e86" stop-opacity=".16"/><stop offset="1" stop-color="#20132f" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="340" y="20" width="720" height="610" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+    <pattern id="stars" width="126" height="94" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="18" r="1.5" fill="#ffe8b7" opacity=".75"/>
+      <path d="M75 54v8m-4-4h8M108 13v6m-3-3h6" stroke="#f8ddb0" stroke-width="1" opacity=".7"/>
+      <circle cx="41" cy="78" r="1" fill="#d9b8e9" opacity=".8"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="640" fill="url(#night)"/>
+  <rect width="1400" height="640" fill="url(#stars)"/>
+  <ellipse cx="700" cy="365" rx="480" ry="290" fill="#e7b678" opacity=".17" filter="url(#glow)"/>
+  <path d="M193 600V266C193 88 385 25 700 25s507 63 507 241v334H193Z" fill="#211638" stroke="url(#gold)" stroke-width="8"/>
+  <path d="M252 596V272c0-132 153-198 448-198s448 66 448 198v324H252Z" fill="#241838" stroke="#b68b58" stroke-width="3"/>
+  <path d="M303 592V282c0-105 125-159 397-159s397 54 397 159v310H303Z" fill="url(#night)" stroke="#e3c084" stroke-width="4"/>
+  <path d="M303 593c93-124 204-191 397-191s304 67 397 191H303Z" fill="url(#stageLight)"/>
+  <circle cx="700" cy="251" r="70" fill="#f4d89c" opacity=".92"/>
+  <circle cx="728" cy="229" r="71" fill="#241838"/>
+  <path d="m582 218 8 17 18 2-14 12 4 18-16-9-16 9 4-18-14-12 18-2 8-17Zm220 12 6 12 13 2-10 9 3 13-12-7-12 7 3-13-10-9 13-2 6-12Z" fill="#f5d898"/>
+  <path d="M302 96c88 26 104 95 74 158-23 47-42 116 15 195 40 54 47 93 23 144H132V0h219c-67 39-98 67-49 96Z" fill="url(#velvet)"/>
+  <path d="M1098 96c-88 26-104 95-74 158 23 47 42 116-15 195-40 54-47 93-23 144h282V0h-219c67 39 98 67 49 96Z" fill="url(#velvet)"/>
+  <path d="M132 0h223c-60 53-83 113-40 171 30 41 35 88 13 133-27 55-17 116 35 163 32 29 45 73 32 126l-5 47H132V0Zm1136 0h-223c60 53 83 113 40 171-30 41-35 88-13 133 27 55 17 116-35 163-32 29-45 73-32 126l5 47h258V0Z" fill="#7d294c" opacity=".46"/>
+  <path d="M126 0c64 43 81 89 55 137-24 44-18 85 13 124m1080-261c-64 43-81 89-55 137 24 44 18 85-13 124M184 640c42-39 50-81 21-126m1011 126c-42-39-50-81-21-126" stroke="#e0b978" stroke-width="3" opacity=".8"/>
+  <path d="M132 0h1136M134 18c93 35 143 39 218 25m696 0c75 14 125 10 218-25" stroke="url(#gold)" stroke-width="5"/>
+  <path d="M368 592h664l84 48H284l84-48Z" fill="#39223e" stroke="#b48756" stroke-width="3"/>
+  <path d="M284 640h832" stroke="#e6c48a" stroke-width="4"/>
+  <path d="M430 604h540M493 620h414" stroke="#ab7c55" stroke-width="2" opacity=".6"/>
+  <path d="M131 67h16v16h-16zm1122 0h16v16h-16zM131 548h16v16h-16zm1122 0h16v16h-16z" fill="#f5d898"/>
+  <circle cx="184" cy="188" r="4" fill="#f7dcaa"/><circle cx="1216" cy="188" r="4" fill="#f7dcaa"/>
+  <path d="M154 191 565 410m681-219L835 410" stroke="#f7dca7" stroke-width="2" opacity=".24"/>
+  <path d="M169 201 560 411m671-210L840 411" stroke="#fff1c9" stroke-width="18" opacity=".08"/>
+</svg>
