@@ -120,7 +120,7 @@ export default function ClubeComuna(){
   if(!draftBook?.title?.trim()||!draftBook?.author?.trim())return flash('Informe o título e a autoria.')
   if(!draftBook.primaryTag)return flash('Escolha a categoria da Biblioteca onde esta indicação ficará.')
   const relatedTags=(draftBook.tagsText||'').split(',').map(tag=>tag.trim()).filter(tag=>tag&&normalizeCatalogText(tag)!=='indicacao do grupo')
-  const tags=[...new Set([draftBook.primaryTag,...relatedTags])]
+  const tags=[...new Set(relatedTags.filter(tag=>normalizeCatalogText(tag)!==normalizeCatalogText(draftBook.primaryTag)))]
   const id=`ind-${crypto.randomUUID()}`
   const entry={id,title:draftBook.title.trim(),author:draftBook.author.trim(),isbn:draftBook.isbn||'',tag:draftBook.primaryTag,tags,description:draftBook.description?.trim()||'Resumo não disponível. Atualize esta informação quando tiver uma edição confirmada.',pages:draftBook.pages||'A confirmar',price:draftBook.price||'Consultar preço',href:draftBook.href||'',buyHref:draftBook.buyHref||'',cover:draftBook.cover||'',publisher:draftBook.publisher||'',publishedDate:draftBook.publishedDate||'',source:draftBook.source||'Catálogo de livros',stamp:String((data.books||books).length+1).padStart(2,'0'),color:'green',verify:`Indicado por ${currentUser.name}. Dados consultados em ${draftBook.source||'catálogo de livros'}; confirme a edição.`,suggestedBy:currentUser.name}
   try{
@@ -146,7 +146,7 @@ export default function ClubeComuna(){
   const bookTallies=catalog.map(book=>({book,n:votes('book',book.id)})),topVotes=Math.max(0,...bookTallies.map(x=>x.n)),leaderBooks=bookTallies.filter(x=>x.n===topVotes).map(x=>x.book),leadersCount=topVotes?leaderBooks.length:0,leadingBookId=topVotes&&leadersCount===1?leaderBooks[0].id:'',finalizeId=leadingBookId||winnerPick;
   const normalizeCatalogText=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR');
   const isGenericBookTag=tag=>normalizeCatalogText(tag)==='indicacao do grupo';
-  const libraryCatalog=catalog.map(book=>{const tags=[...new Set([book.tag,...(book.tags||[])].filter(tag=>tag&&!isGenericBookTag(tag)))];const primaryTag=isGenericBookTag(book.tag)?(tags[0]||'Outras leituras'):(book.tag||tags[0]||'Outras leituras');return {...book,tag:primaryTag,tags:[...new Set([primaryTag,...tags])]}});
+  const libraryCatalog=catalog.map(book=>{const tags=[...new Set([book.tag,...(book.tags||[])].filter(tag=>tag&&!isGenericBookTag(tag)))];const primaryTag=isGenericBookTag(book.tag)?(tags[0]||'Outras leituras'):(book.tag||tags[0]||'Outras leituras');return {...book,tag:primaryTag,tags:tags.filter(tag=>normalizeCatalogText(tag)!==normalizeCatalogText(primaryTag))}});
   const libraryCategories=[...new Set(libraryCatalog.map(book=>book.tag).filter(tag=>tag&&!isGenericBookTag(tag)))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
   const alexandriaTags=[...new Set(libraryCatalog.flatMap(book=>[book.tag,...(book.tags||[])].filter(tag=>tag&&!isGenericBookTag(tag))))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
   const filteredAlexandriaBooks=libraryCatalog.filter(book=>{const searchable=normalizeCatalogText([book.title,book.author,book.description,book.tag,...(book.tags||[])].join(' '));const queryMatches=!alexandriaQuery.trim()||searchable.includes(normalizeCatalogText(alexandriaQuery.trim()));const tags=[book.tag,...(book.tags||[])];return queryMatches&&(!alexandriaTag||tags.includes(alexandriaTag))});
