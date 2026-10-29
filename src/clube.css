@@ -30,13 +30,13 @@
 .cc-nav-media-trigger:hover,.cc-nav-media-trigger:focus-visible{color:var(--red)}
 .cc-nav-media-trigger svg{transition:transform .18s ease}
 .cc-nav-dropdown.is-open .cc-nav-media-trigger svg{transform:rotate(180deg)}
-.cc-nav-submenu{position:absolute;top:calc(100% + 10px);left:-14px;z-index:20;width:245px;padding:7px;background:#f8f5ee;border:1px solid var(--line);box-shadow:0 12px 30px #201e1b1a;display:none}
+.cc-nav-submenu{position:absolute;top:100%;left:-14px;z-index:20;width:245px;padding:7px;background:#f8f5ee;border:1px solid var(--line);box-shadow:0 12px 30px #201e1b1a;display:none}
 .cc-nav-dropdown:hover .cc-nav-submenu,.cc-nav-dropdown:focus-within .cc-nav-submenu,.cc-nav-dropdown.is-open .cc-nav-submenu{display:grid}
 .cc-nav-submenu a{display:flex;align-items:center;gap:10px;padding:12px 10px;color:#514e48;font-size:11px}
 .cc-nav-submenu a:hover,.cc-nav-submenu a:focus-visible{background:#eee7db;color:var(--red)}
 .cc-nav-submenu svg{color:var(--red);flex:none}
 
-/* Camarote das Histórias */
+/* Cineclandestino */
 .cc-media-page{padding-top:36px;padding-bottom:100px}
 .cc-media-stage{min-height:510px;position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;padding:clamp(35px,7vw,90px);background:#21120f url('/camarote-teatro.svg') center 43%/cover no-repeat;color:#fff7e6}
 .cc-media-stage:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#180b0bed 0%,#21120fbf 50%,#21120f26 100%)}

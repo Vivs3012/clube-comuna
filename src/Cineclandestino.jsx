@@ -8,7 +8,7 @@ const kinds = [
   { value: 'series', label: 'Séries', icon: Tv },
 ];
 
-export default function MediaCamarote({ recommendations = [], members = [], currentUser, isAdmin, onLogin, onAdded }) {
+export default function Cineclandestino({ recommendations = [], members = [], currentUser, isAdmin, onLogin, onAdded }) {
   const [kindFilter, setKindFilter] = useState('all');
   const [query, setQuery] = useState('');
   const [kind, setKind] = useState('film');
@@ -92,7 +92,7 @@ export default function MediaCamarote({ recommendations = [], members = [], curr
       <section className="cc-media-stage">
         <div className="cc-media-stage-copy">
           <p className="cc-media-kicker"><Sparkles size={13} /> CLUBE COMUNA APRESENTA</p>
-          <h1>CAMAROTE<br /><em>DAS HISTÓRIAS</em></h1>
+          <h1>CINE<br /><em>CLANDESTINO</em></h1>
           <p>Filmes e séries para abrir as cortinas de outros mundos — e continuar a conversa depois que as luzes se acendem.</p>
           <a href="#cc-media-list">Explorar indicações <ArrowUpRight size={15} /></a>
         </div>
@@ -137,12 +137,12 @@ export default function MediaCamarote({ recommendations = [], members = [], curr
             ))}
           </div>
         ) : (
-          <div className="cc-media-empty"><span className="cc-media-empty-star">✦</span><h3>{query || kindFilter !== 'all' ? 'Nenhuma história encontrada' : 'O palco espera a primeira história'}</h3><p>{query || kindFilter !== 'all' ? 'Mude o filtro ou a busca para encontrar outras indicações.' : 'Indique um filme ou uma série e abra a primeira sessão do Camarote.'}</p></div>
+          <div className="cc-media-empty"><span className="cc-media-empty-star">✦</span><h3>{query || kindFilter !== 'all' ? 'Nenhuma história encontrada' : 'A tela espera a primeira história'}</h3><p>{query || kindFilter !== 'all' ? 'Mude o filtro ou a busca para encontrar outras indicações.' : 'Indique um filme ou uma série para a próxima sessão do Cineclandestino.'}</p></div>
         )}
       </section>
 
       <section className="cc-media-submit" id="cc-media-submit">
-        <div className="cc-media-submit-copy"><p className="cc-media-kicker"><Sparkles size={13} /> LUGAR RESERVADO PARA VOCÊ</p><h2>ABRA AS<br /><em>CORTINAS.</em></h2><p>Indique uma história que mereça entrar em cartaz no clube. Sua sugestão aparece para todo mundo.</p><div className="cc-media-ticket"><span>CAMAROTE DAS HISTÓRIAS</span><b>UMA BOA HISTÓRIA<br />MERECE SER CONTADA.</b></div></div>
+        <div className="cc-media-submit-copy"><p className="cc-media-kicker"><Sparkles size={13} /> LUGAR RESERVADO PARA VOCÊ</p><h2>ACENDA A<br /><em>SESSÃO.</em></h2><p>Indique uma história que mereça entrar em cartaz no clube. Sua sugestão aparece para todo mundo.</p><div className="cc-media-ticket"><span>CINECLANDESTINO</span><b>UMA BOA HISTÓRIA<br />MERECE SER CONTADA.</b></div></div>
         <form className="cc-media-form" onSubmit={addRecommendation}>
           <div className="cc-media-form-head"><Clapperboard size={21} /><div><span>NOVA INDICAÇÃO</span><h3>O que vamos assistir?</h3></div></div>
           <div className="cc-media-form-grid">
