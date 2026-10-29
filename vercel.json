@@ -1,9 +1,12 @@
 {
+  "redirects": [
+    { "source": "/clube/midia/camarote", "destination": "/clube/midia/cineclandestino", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/clube", "destination": "/index.html" },
     { "source": "/clube/integrantes", "destination": "/index.html" },
     { "source": "/clube/alexandria", "destination": "/index.html" },
-    { "source": "/clube/midia/camarote", "destination": "/index.html" }
+    { "source": "/clube/midia/cineclandestino", "destination": "/index.html" }
   ]
 }
