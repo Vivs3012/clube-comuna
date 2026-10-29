@@ -112,3 +112,6 @@
 @media(max-width:600px){.cc-book-detail-modal{padding:28px 20px 20px}.cc-book-detail-layout{grid-template-columns:105px 1fr;gap:15px;align-items:start}.cc-book-detail-cover{height:155px}.cc-book-detail-copy .cc-kicker{font-size:8px;letter-spacing:.7px;margin:5px 0 9px}.cc-book-detail-copy h2{font-size:25px}.cc-book-detail-author{font-size:10px}.cc-book-detail-tags{gap:4px}.cc-book-detail-tags span{font-size:8px;padding:4px 5px}}
 
 .cc-members-page .cc-member-card h2{font:600 21px/1.25 'Playfair Display',Georgia,serif;letter-spacing:0.1px;word-spacing:1px;margin:7px 0 9px}
+
+.cc-member-card>img{height:340px;object-fit:contain;object-position:center;background:#d6ccbb}
+@media(max-width:580px){.cc-member-card>img{height:300px}}
