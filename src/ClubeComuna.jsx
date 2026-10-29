@@ -130,7 +130,6 @@ export default function ClubeComuna(){
   }catch(error){flash(flashAuthError(error))}
  }
   function announcementChoice(kind,state=data){
-   if(state.status?.[kind]!=='closed')return null;
    const options=kind==='date'?state.dateOptions||[]:places.map(([name])=>name);
    const tally=options.map(value=>({value,count:kind==='date'?Object.values(state.dateAvailability||{}).filter(items=>items.includes(value)).length:Object.values(state.votes||{}).filter(vote=>vote[kind]===value).length}));
    const max=Math.max(0,...tally.map(item=>item.count));
@@ -139,13 +138,13 @@ export default function ClubeComuna(){
    return leaders.length===1?leaders[0].value:null;
   }
   function announcementResult(kind,state=data){
-   if(state.status?.[kind]!=='closed')return 'Votação ainda aberta — resultado a confirmar.';
    const options=kind==='date'?state.dateOptions||[]:places.map(([name])=>name);
    const tally=options.map(value=>({value,count:kind==='date'?Object.values(state.dateAvailability||{}).filter(items=>items.includes(value)).length:Object.values(state.votes||{}).filter(vote=>vote[kind]===value).length}));
    const max=Math.max(0,...tally.map(item=>item.count));
-   if(!max)return 'Ainda não definida — não houve votos.';
+   if(!max)return state.status?.[kind]==='closed'?'Ainda não definida — não houve votos.':'Votação aberta — resultado a confirmar.';
    const leaders=tally.filter(item=>item.count===max).map(item=>kind==='date'?`${formatDate(item.value.split('T')[0])}${item.value.includes('T')?` às ${item.value.slice(11)}`:''}`:item.value);
-   return leaders.length>1?`Empate entre ${leaders.join(' e ')} — a confirmar.`:leaders[0];
+   if(leaders.length>1)return `Empate entre ${leaders.join(' e ')} — a confirmar.`;
+   return state.status?.[kind]==='closed'?leaders[0]:`Mais votada até agora: ${leaders[0]} (resultado provisório)`;
   }
   function calendarEventUrl(book,state=data){
    const chosenDate=announcementChoice('date',state);
@@ -168,7 +167,7 @@ export default function ClubeComuna(){
    const estanteUrl=`https://www.estantevirtual.com.br/busca?q=${encodeURIComponent(`${book.title} ${book.author}`)}`;
    const extraLinks=[book.buyHref,book.href].filter((url,index,all)=>url&&/^https?:\/\//i.test(url)&&!url.includes('estantevirtual.com.br')&&all.indexOf(url)===index).slice(0,2);
    const calendarUrl=calendarEventUrl(book,state);
-   return `🎉 *A votação do Clube Comuna foi encerrada!*\n\n📚 *Livro escolhido:* ${book.title} — ${book.author}\n\n*Sobre a leitura:*\n${shortSummary}\n\n🛒 *Onde comprar:*\nEstante Virtual: ${estanteUrl}${extraLinks.map(url=>`\nOutra opção: ${url}`).join('')}\n\n🗓 *Data do encontro:* ${announcementResult('date',state)}\n📍 *Local:* ${announcementResult('place',state)}${calendarUrl?`\n\n📅 *Salvar no calendário:* ${calendarUrl}`:''}\n\nNão tem problema se você não conseguir terminar o livro. Traga uma ideia, passagem ou pergunta que possa alimentar o debate. Depois, também teremos um tempo para socializar e trocar impressões com calma. 💬`;
+   return `🎉 *A votação do Clube Comuna foi encerrada!*\n\n📚 *Livro escolhido:* ${book.title} — ${book.author}\n\n*Sobre a leitura:*\n${shortSummary}\n\n🛒 *Onde comprar:*\nEstante Virtual: ${estanteUrl}${extraLinks.map(url=>`\nOutra opção: ${url}`).join('')}\n\n🗓 *Data do encontro:* ${announcementResult('date',state)}\n📍 *Local:* ${announcementResult('place',state)}${calendarUrl?`\n\n📅 *Salvar no calendário${state.status?.date==='closed'?'':' (data provisória)'}:* ${calendarUrl}`:''}\n\nNão tem problema se você não conseguir terminar o livro. Traga uma ideia, passagem ou pergunta que possa alimentar o debate. Depois, também teremos um tempo para socializar e trocar impressões com calma. 💬`;
   }
   function whatsappAnnouncementUrl(book,state=data){return `https://wa.me/?text=${encodeURIComponent(buildAnnouncementMessage(book,state))}`}
   async function finalizeBookVote(){if(!isAdmin||!supabase)return flash('Apenas a administração autenticada pode finalizar a votação.');const tally=catalog.map(b=>({b,n:votes('book',b.id)})),max=Math.max(0,...tally.map(x=>x.n)),leaders=tally.filter(x=>x.n===max),id=max>0&&leaders.length===1?leaders[0].b.id:winnerPick;if(!id)return flash('Escolha o livro do mês para desempatar ou concluir a votação sem votos.');const whatsappWindow=window.open('about:blank','_blank');try{throwSupabaseError(await supabase.rpc('admin_finalize_book_vote',{p_selected_book_id:id}),'Não foi possível finalizar a votação');setWinnerPick('');let latest=data;try{latest=await reloadData()||data}catch{}const winner=catalog.find(b=>b.id===id);if(whatsappWindow&&winner){whatsappWindow.opener=null;whatsappWindow.location.href=whatsappAnnouncementUrl(winner,latest)}flash(whatsappWindow?'Votação encerrada. O WhatsApp abriu com a mensagem pronta; selecione o grupo e toque em enviar.':'Livro anunciado. Se o WhatsApp não abriu, use “Preparar mensagem no WhatsApp” no painel.')}catch(error){whatsappWindow?.close();flash(flashAuthError(error))}}
