@@ -8,7 +8,7 @@ function unwrap(result, label) {
 export async function loadClubState(defaultBooks, isAdmin = false) {
   const client = supabase;
   const [bookResult, profileResult, voteResult, availabilityResult, configResult, mediaResult] = await Promise.all([
-    client.from('club_books').select('id,details,sort_order').order('sort_order').order('created_at'),
+    client.from('club_books').select('id,details,sort_order,suggested_by').order('sort_order').order('created_at'),
     client.from('club_profiles').select('id,display_name,bio,avatar_url,created_at').eq('is_active', true).order('created_at'),
     client.from('club_votes').select('user_id,kind,value'),
     client.from('club_date_availability').select('user_id,option_value'),
@@ -21,7 +21,7 @@ export async function loadClubState(defaultBooks, isAdmin = false) {
 
   if (!bookRows.length && isAdmin) {
     unwrap(await client.rpc('seed_club_books', { p_books: defaultBooks }), 'Não foi possível inicializar o catálogo');
-    bookRows = unwrap(await client.from('club_books').select('id,details,sort_order').order('sort_order').order('created_at'), 'Não foi possível carregar o catálogo');
+    bookRows = unwrap(await client.from('club_books').select('id,details,sort_order,suggested_by').order('sort_order').order('created_at'), 'Não foi possível carregar o catálogo');
   }
 
   const profileRows = unwrap(profileResult, 'Não foi possível carregar integrantes');
@@ -58,7 +58,7 @@ export async function loadClubState(defaultBooks, isAdmin = false) {
   }
 
   return {
-    books: bookRows.length ? bookRows.map((row) => ({ ...row.details, id: row.id })) : defaultBooks,
+    books: bookRows.length ? bookRows.map((row) => ({ ...row.details, id: row.id, suggestedById: row.suggested_by })) : defaultBooks,
     votes,
     dateOptions: config?.date_options || [],
     dateAvailability,
