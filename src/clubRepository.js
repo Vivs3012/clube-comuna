@@ -12,7 +12,7 @@ export async function loadClubState(defaultBooks, isAdmin = false) {
     client.from('club_profiles').select('id,display_name,bio,avatar_url,created_at').eq('is_active', true).order('created_at'),
     client.from('club_votes').select('user_id,kind,value'),
     client.from('club_date_availability').select('user_id,option_value'),
-    client.from('club_config').select('status,deadlines,results,date_options,history,finalized_book_id').eq('id', 1).maybeSingle(),
+    client.from('club_config').select('status,deadlines,results,date_options,history,finalized_book_id,date_voting_opened_at').eq('id', 1).maybeSingle(),
     client.from('club_media_recommendations').select('*').order('created_at', { ascending: false }),
   ]);
 
@@ -61,6 +61,7 @@ export async function loadClubState(defaultBooks, isAdmin = false) {
     books: bookRows.length ? bookRows.map((row) => ({ ...row.details, id: row.id, suggestedById: row.suggested_by })) : defaultBooks,
     votes,
     dateOptions: config?.date_options || [],
+    dateVotingOpenedAt: config?.date_voting_opened_at || '2026-10-29',
     dateAvailability,
     status: config?.status || { book: 'open', place: 'open', date: 'open' },
     deadlines: config?.deadlines || { book: 'A definir', place: 'A definir', date: 'A definir' },
