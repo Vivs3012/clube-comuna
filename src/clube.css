@@ -115,3 +115,7 @@
 
 .cc-member-card>img{height:340px;object-fit:contain;object-position:center;background:#d6ccbb}
 @media(max-width:580px){.cc-member-card>img{height:300px}}
+
+.cc-month-winner{flex-wrap:wrap}.cc-winner-book{min-width:190px}.cc-winner-meta{flex:1;display:grid;grid-template-columns:repeat(2,minmax(125px,1fr));gap:12px}.cc-winner-meta>div{display:grid;align-content:center;gap:6px;min-width:0}.cc-winner-meta>div>span{font-size:8px;font-weight:700;letter-spacing:1px;color:var(--muted)}.cc-winner-meta>div>b,.cc-winner-meta>div>a{font-size:11px;line-height:1.4;color:var(--ink)}.cc-winner-meta>div>a{display:flex;align-items:center;gap:5px;color:var(--red);font-weight:700}.cc-winner-meta>div>a:hover{text-decoration:underline}.cc-month-winner .cc-winner-book h2{font:600 22px 'Playfair Display';margin:0}.cc-month-winner .cc-winner-book>p:last-child{font-size:10px;color:var(--muted);margin:5px 0 0}.cc-month-winner>.cc-winner-book-link{margin-left:auto;display:flex;align-items:center;gap:5px;color:var(--red);font-size:10px;font-weight:700;white-space:nowrap}
+@media(max-width:700px){.cc-month-winner{align-items:flex-start}.cc-winner-meta{flex-basis:100%;margin-left:54px;grid-template-columns:1fr 1fr}.cc-month-winner>.cc-winner-book-link{margin-left:auto}}
+@media(max-width:420px){.cc-winner-meta{margin-left:0;flex-basis:100%;grid-template-columns:1fr}.cc-month-winner>.cc-winner-book-link{margin-left:0}}
